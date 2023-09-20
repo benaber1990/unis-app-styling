@@ -34,6 +34,61 @@ const NOTIFICATIONS_DATA = [
     alertTitle: "Your certificate is expiring soon",
     alertCat: "Expiring",
   },
+  {
+    id: "008",
+    alertTitle: "Your certificate is expiring soon",
+    alertCat: "Expiring",
+  },
+  {
+    id: "009",
+    alertTitle: "Your certificate is expiring soon",
+    alertCat: "Expiring",
+  },
+  {
+    id: "010",
+    alertTitle: "Your certificate is expiring soon",
+    alertCat: "Expiring",
+  },
+  {
+    id: "011",
+    alertTitle: "Your certificate is expiring soon",
+    alertCat: "Expiring",
+  },
+  {
+    id: "012",
+    alertTitle: "Your certificate is expiring soon",
+    alertCat: "Expiring",
+  },
+  {
+    id: "013",
+    alertTitle: "Your certificate is expiring soon",
+    alertCat: "Expiring",
+  },
+  {
+    id: "014",
+    alertTitle: "Your certificate is expiring soon",
+    alertCat: "Expiring",
+  },
+  {
+    id: "015",
+    alertTitle: "Your certificate is expiring soon",
+    alertCat: "Expiring",
+  },
+  {
+    id: "016",
+    alertTitle: "Your certificate is expiring soon",
+    alertCat: "Expiring",
+  },
+  {
+    id: "017",
+    alertTitle: "Your certificate is expiring soon",
+    alertCat: "Expiring",
+  },
+  {
+    id: "018",
+    alertTitle: "Your certificate is expiring soon",
+    alertCat: "Expiring",
+  },
 ];
 
 export default NOTIFICATIONS_DATA;

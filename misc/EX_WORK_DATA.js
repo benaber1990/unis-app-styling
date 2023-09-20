@@ -1,5 +1,5 @@
 const imageLink1 =
-  "https://images.pexels.com/photos/1216589/pexels-photo-1216589.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2";
+  "https://www.cscs.uk.com/wp-content/uploads/2015/01/Labourer_lo-res.jpg";
 
 const imgLink2 =
   "https://images.pexels.com/photos/8961065/pexels-photo-8961065.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2";

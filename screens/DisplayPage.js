@@ -24,7 +24,8 @@ const InfoComp = ({ title }) => (
   </View>
 );
 
-function DisplayPage() {
+function DisplayPage({ route }) {
+  const { userId } = route.params;
   return (
     <View style={styles.screenStyle}>
       {/* Header */}
@@ -87,6 +88,8 @@ function DisplayPage() {
           <InfoComp title="Age Here" />
         </View>
       </View>
+
+      <Text style={{ color: "lightgrey" }}>{userId}</Text>
     </View>
   );
 }

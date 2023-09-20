@@ -32,9 +32,11 @@ const styles = StyleSheet.create({
     // flexDirection: "row",
     // alignSelf: "center",
     alignItems: "center",
-    backgroundColor: "#d1f1e5",
+    backgroundColor: COLORS.grey,
     // paddingVertical: 20,
     // paddingHorizontal: 20,
+    // borderWidth: 2,
+    // borderColor: COLORS.lightGreen,
 
     // height: 125,
     margin: 8,
@@ -43,11 +45,12 @@ const styles = StyleSheet.create({
     // elevation: 2,
   },
   textStyle: {
-    // color: "white",
-    marginTop: 5,
+    color: "white",
+    marginTop: 1,
     fontSize: 12,
     fontWeight: "700",
     textAlign: "center",
+    // marginBottom: 2,
   },
 });
 

@@ -19,6 +19,7 @@ import "firebase/compat/database";
 import "firebase/auth";
 import { StatusBar } from "expo-status-bar";
 import { fetchAllImages } from "./helpers/helpers";
+import FooterTextComp from "../components/FooterTextComp";
 
 const {
   ID,
@@ -87,42 +88,179 @@ function UpdateProfile({ navigation }) {
   return (
     <View style={styles.screenStyle}>
       <ScrollView showsVerticalScrollIndicator={false}>
-        <View style={{ marginTop: 60 }}>
+        <View style={{ alignItems: "center", marginBottom: 30 }}>
           <Text
             style={{
-              fontWeight: "500",
+              color: "white",
               fontSize: 18,
-              textAlign: "center",
-              marginBottom: 20,
+              marginTop: 15,
+              fontWeight: "600",
             }}
           >
-            Update My Profile
+            Fast<Text style={{ color: COLORS.mainGreen }}>.</Text> Simple
+            <Text style={{ color: COLORS.mainGreen }}>.</Text> Secure
+            <Text style={{ color: COLORS.mainGreen }}>.</Text>
           </Text>
         </View>
-        <Text style={styles.labelTextStyle}>First Name</Text>
-        <TextInput value={firstName} style={styles.textInputStyle} />
-        <Text style={styles.labelTextStyle}>Last Name</Text>
-        <TextInput value={lastName} style={styles.textInputStyle} />
-        <Text style={styles.labelTextStyle}>Date of Birth</Text>
-        <TextInput value={dob} style={styles.textInputStyle} />
-        <Text style={styles.labelTextStyle}>Location (town or city)</Text>
-        <TextInput value={userLocation} style={styles.textInputStyle} />
-        <Text style={styles.labelTextStyle}>Postcode</Text>
-        <TextInput value={postCode} style={styles.textInputStyle} />
-        <Text style={styles.labelTextStyle}>Phone Number</Text>
-        <TextInput value={phoneNumber} style={styles.textInputStyle} />
-        <Text style={styles.labelTextStyle}>Email Address</Text>
-        <TextInput value={email} style={styles.textInputStyle} />
-        <Text style={styles.labelTextStyle}>Gender</Text>
-        <TextInput value={gender} style={styles.textInputStyle} />
-        <View style={{}}>
+
+        <View style={{ alignItems: "center" }}>
+          {/* First Name */}
+          <View style={{ flexDirection: "row", marginBottom: 20 }}>
+            <View
+              style={{
+                width: 20,
+                backgroundColor: COLORS.mainGreen,
+                borderTopLeftRadius: 4,
+                borderBottomLeftRadius: 4,
+                marginRight: -2,
+                marginTop: -2,
+                marginBottom: -2,
+              }}
+            ></View>
+
+            <TextInput
+              value={firstName}
+              style={styles.textInputStyle}
+              placeholder="First Name..."
+              placeholderTextColor={COLORS.lightGreen}
+            />
+          </View>
+
+          {/* Last Name */}
+          <View style={{ flexDirection: "row", marginBottom: 20 }}>
+            <View
+              style={{
+                width: 20,
+                backgroundColor: COLORS.mainGreen,
+                borderTopLeftRadius: 4,
+                borderBottomLeftRadius: 4,
+                marginRight: -2,
+                marginTop: -2,
+                marginBottom: -2,
+              }}
+            ></View>
+            <TextInput
+              value={lastName}
+              style={styles.textInputStyle}
+              placeholder="Last Name..."
+              placeholderTextColor={COLORS.lightGreen}
+            />
+          </View>
+
+          {/* Date of Birth */}
+          <View style={{ flexDirection: "row", marginBottom: 20 }}>
+            <View
+              style={{
+                width: 20,
+                backgroundColor: COLORS.mainGreen,
+                borderTopLeftRadius: 4,
+                borderBottomLeftRadius: 4,
+                marginRight: -2,
+                marginTop: -2,
+                marginBottom: -2,
+              }}
+            ></View>
+            <TextInput
+              value={dob}
+              style={styles.textInputStyle}
+              placeholder="Date of Birth..."
+              placeholderTextColor={COLORS.lightGreen}
+            />
+          </View>
+
+          {/* Location */}
+          <View style={{ flexDirection: "row", marginBottom: 20 }}>
+            <View
+              style={{
+                width: 20,
+                backgroundColor: COLORS.mainGreen,
+                borderTopLeftRadius: 4,
+                borderBottomLeftRadius: 4,
+                marginRight: -2,
+                marginTop: -2,
+                marginBottom: -2,
+              }}
+            ></View>
+            <TextInput value={userLocation} style={styles.textInputStyle} />
+          </View>
+
+          {/* Postcode */}
+          <View style={{ flexDirection: "row", marginBottom: 20 }}>
+            <View
+              style={{
+                width: 20,
+                backgroundColor: COLORS.mainGreen,
+                borderTopLeftRadius: 4,
+                borderBottomLeftRadius: 4,
+                marginRight: -2,
+                marginTop: -2,
+                marginBottom: -2,
+              }}
+            ></View>
+            <TextInput value={postCode} style={styles.textInputStyle} />
+          </View>
+
+          {/* Phone Number */}
+          <View style={{ flexDirection: "row", marginBottom: 20 }}>
+            <View
+              style={{
+                width: 20,
+                backgroundColor: COLORS.mainGreen,
+                borderTopLeftRadius: 4,
+                borderBottomLeftRadius: 4,
+                marginRight: -2,
+                marginTop: -2,
+                marginBottom: -2,
+              }}
+            ></View>
+            <TextInput value={phoneNumber} style={styles.textInputStyle} />
+          </View>
+
+          {/* Email */}
+          <View style={{ flexDirection: "row", marginBottom: 20 }}>
+            <View
+              style={{
+                width: 20,
+                backgroundColor: COLORS.mainGreen,
+                borderTopLeftRadius: 4,
+                borderBottomLeftRadius: 4,
+                marginRight: -2,
+                marginTop: -2,
+                marginBottom: -2,
+              }}
+            ></View>
+            <TextInput value={email} style={styles.textInputStyle} />
+          </View>
+
+          {/* Gender */}
+          <View style={{ flexDirection: "row", marginBottom: 20 }}>
+            <View
+              style={{
+                width: 20,
+                backgroundColor: COLORS.mainGreen,
+                borderTopLeftRadius: 4,
+                borderBottomLeftRadius: 4,
+                marginRight: -2,
+                marginTop: -2,
+                marginBottom: -2,
+              }}
+            ></View>
+            <TextInput
+              value={gender}
+              style={styles.textInputStyle}
+              placeholder="Gender"
+              placeholderTextColor={COLORS.lightGreen}
+            />
+          </View>
+        </View>
+
+        {/* <View style={{}}>
           <FlatList
             data={imagesData}
             renderItem={Item}
             keyExtractor={(item) => item.id}
-            horizontal
           />
-        </View>
+        </View> */}
         {/* Submit & Save */}
         <View style={{ alignItems: "center" }}>
           <Pressable
@@ -140,13 +278,47 @@ function UpdateProfile({ navigation }) {
           </Pressable>
         </View>
 
-        {/* Password Reset */}
-        <Pressable
-          onPress={() => navigation.navigate("PasswordReset")}
-          style={{ marginBottom: 40 }}
+        <View
+          style={{
+            backgroundColor: COLORS.lightGreen,
+            paddingVertical: 20,
+            paddingHorizontal: 20,
+            marginTop: 20,
+            borderRadius: 12,
+            // marginBottom: 20,
+          }}
         >
-          <Text>Need to reset your password? Click here</Text>
-        </Pressable>
+          <Text
+            style={{ fontWeight: "600", fontSize: 16, color: COLORS.black }}
+          >
+            Build Your Unis Profile
+          </Text>
+          <Text>
+            Your Unis profile gives site managers instant access to your info
+          </Text>
+
+          <Pressable
+            onPress={() => navigation.navigate("Profile")}
+            style={{
+              backgroundColor: COLORS.mainGreen,
+              paddingVertical: 5,
+              paddingHorizontal: 8,
+              borderRadius: 4,
+              elevation: 1,
+              alignSelf: "flex-start",
+              marginTop: 5,
+            }}
+          >
+            <Text
+              style={{
+                fontWeight: "500",
+                color: "white",
+              }}
+            >
+              Update now
+            </Text>
+          </Pressable>
+        </View>
       </ScrollView>
     </View>
   );
@@ -154,7 +326,7 @@ function UpdateProfile({ navigation }) {
 
 const styles = StyleSheet.create({
   screenStyle: {
-    backgroundColor: "#f5f5f5",
+    backgroundColor: COLORS.black,
     flex: 1,
     alignItems: "center",
   },
@@ -169,18 +341,21 @@ const styles = StyleSheet.create({
     marginHorizontal: 16,
   },
   textInputStyle: {
-    height: 40,
+    height: 50,
     width: 240,
     borderRadius: 3,
     borderWidth: 1,
     paddingLeft: 15,
-    marginBottom: 20,
-    backgroundColor: "white",
+    // marginBottom: 20,
+    backgroundColor: COLORS.grey,
+    fontSize: 16,
+    color: "white",
   },
   labelTextStyle: {
     marginBottom: 5,
     fontWeight: "500",
     fontSize: 16,
+    color: "lightgrey",
   },
 });
 

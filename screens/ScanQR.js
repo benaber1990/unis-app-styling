@@ -23,7 +23,7 @@ export default function ScanQR() {
     // alert(`Bar code with type ${type} and DATA::: ${data} has been scanned!`);
     console.log(data);
     navigationHndl.navigate("DisplayPage", {
-      displayData: data,
+      userId: "12345",
     });
   };
 

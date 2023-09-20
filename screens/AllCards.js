@@ -1,5 +1,12 @@
 import React from "react";
-import { View, Text, StyleSheet, FlatList, Pressable } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  FlatList,
+  Pressable,
+  Image,
+} from "react-native";
 import { StatusBar } from "expo-status-bar";
 import EX_CARDS from "../misc/EX_CARDS";
 import COLORS from "../misc/COLORS";
@@ -8,33 +15,25 @@ import { Feather } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
 
 function AllCards({ navigation }) {
-  const Item = ({ title, cat, description }) => (
+  const Item = ({ title, cat, description, imgLink }) => (
     <Pressable
       onPress={() => navigation.navigate("SingleCard")}
       style={styles.cardItemStyle}
     >
-      <View
-        style={{
-          marginTop: 30,
-          flexDirection: "row",
-          justifyContent: "space-between",
-        }}
-      >
-        <Octicons name="tools" size={24} color="black" />
-        <Feather name="chevron-right" size={24} color="black" />
-      </View>
-      <View>
-        <Text style={{ fontSize: 18, marginTop: 20 }}>{title}</Text>
-      </View>
-      <View style={{ flexDirection: "row", marginTop: 30, marginBottom: 30 }}>
-        <Text>Text</Text>
-        <Text>Text</Text>
-      </View>
+      <Image
+        source={{ uri: imgLink }}
+        style={{ width: 300, height: 200, borderRadius: 24 }}
+      />
     </Pressable>
   );
 
   const renderItem = ({ item }) => (
-    <Item title={item.title} cat={item.cat} description={item.description} />
+    <Item
+      title={item.title}
+      cat={item.cat}
+      description={item.description}
+      imgLink={item.imgLink}
+    />
   );
 
   return (
@@ -93,10 +92,13 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.yellow,
     width: 300,
     // paddingVertical: 80,
-    paddingLeft: 30,
+    // paddingLeft: 30,
     paddingRight: 30,
-    borderRadius: 6,
-    marginBottom: 30,
+    borderRadius: 24,
+    marginTop: -60,
+    elevation: 3,
+    // borderWidth: 2,
+    // borderColor: "black",
   },
 });
 

@@ -213,7 +213,7 @@ function UserScreen({ navigation }) {
       </Pressable>
       {/* Get Support Button*/}
       <Pressable
-        onPress={() => navigation.navigate("Support")}
+        onPress={() => navigation.navigate("ContactPage")}
         style={styles.buttonStyle}
       >
         <Entypo
@@ -326,6 +326,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
     paddingVertical: 20,
     borderRadius: 6,
+    borderWidth: 2,
+    borderColor: COLORS.mainGreen,
   },
 });
 

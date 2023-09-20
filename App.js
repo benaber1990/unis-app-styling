@@ -54,6 +54,13 @@ import InductionsScreen from "./screens/InductionsScreen";
 import { UsernameProvider } from "./components/IDContext";
 import SignUpTCs from "./screens/SignUpTCs";
 import InductionsDisplay from "./screens/InductionsDisplay";
+import SearchUser from "./screens/SearchUser";
+import SiteScreen from "./screens/SiteScreen";
+import HumanResources from "./screens/HumanResources";
+import HealthSafety from "./screens/HealthSafety";
+import AllDocs from "./screens/AllDocs";
+import PromoScreen from "./screens/PromoScreen";
+import ContactPage from "./screens/ContactPage";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -69,8 +76,8 @@ function MyTabs() {
         tabBarStyle: {
           paddingBottom: 6,
           paddingTop: 6,
-          backgroundColor: COLORS.black,
-          borderTopColor: COLORS.black,
+          backgroundColor: COLORS.grey,
+          borderTopColor: COLORS.grey,
         },
       }}
     >
@@ -84,11 +91,11 @@ function MyTabs() {
         }}
       />
       <Tab.Screen
-        name="CV"
-        component={CV}
+        name="Hub"
+        component={Hub}
         options={{
           tabBarIcon: ({ color, size }) => (
-            <Ionicons name="briefcase" size={20} color={color} />
+            <Ionicons name="md-globe-outline" size={23} color={color} />
           ),
         }}
       />
@@ -139,17 +146,32 @@ function App() {
       <NavigationContainer>
         <Stack.Navigator
           screenOptions={{
-            headerShown: false,
+            // headerShown: false,
+            headerTintColor: COLORS.lightGreen,
+            headerStyle: { backgroundColor: COLORS.black },
           }}
         >
-          <Stack.Screen name="HomeScreen" component={MyTabs} />
+          <Stack.Screen
+            name="HomeScreen"
+            component={MyTabs}
+            // options={{ headerShown: false }}
+            options={{ headerShown: false }}
+          />
           <Stack.Screen name="DisplayPage" component={DisplayPage} />
-          <Stack.Screen name="LogInScreen" component={LogInScreen} />
+          <Stack.Screen
+            name="LogInScreen"
+            component={LogInScreen}
+            options={{ headerShown: false }}
+          />
           <Stack.Screen name="JobList" component={JobList} />
           <Stack.Screen name="Hub" component={Hub} />
           <Stack.Screen name="Membership" component={Membership} />
           <Stack.Screen name="Support" component={Support} />
-          <Stack.Screen name="CreateAccount" component={CreateAccountScreen} />
+          <Stack.Screen
+            name="CreateAccount"
+            component={CreateAccountScreen}
+            options={{ headerShown: false }}
+          />
           <Stack.Screen name="Submitted" component={SubmittedCard} />
           <Stack.Screen name="Notifications" component={NotificationsScreen} />
           <Stack.Screen name="NotDisplay" component={NotDisplayListing} />
@@ -162,9 +184,17 @@ function App() {
           <Stack.Screen name="ContentDisplay" component={ContentDisplay} />
           <Stack.Screen name="EnterScreen" component={EnterScreen} />
           <Stack.Screen name="AddNewDoc" component={AddNewDocument} />
-          <Stack.Screen name="UpdateProfile" component={UpdateProfile} />
+          <Stack.Screen
+            name="UpdateProfile"
+            component={UpdateProfile}
+            options={{ title: "Profile" }}
+          />
           <Stack.Screen name="GenerateQR" component={GenerateQR} />
-          <Stack.Screen name="CreateProfile" component={CreateProfile} />
+          <Stack.Screen
+            name="CreateProfile"
+            component={CreateProfile}
+            options={{ title: "Set Up Your Profile" }}
+          />
           <Stack.Screen name="AddNewCert" component={AddNewCert} />
           <Stack.Screen name="UploadWork" component={UploadWork} />
           <Stack.Screen name="AllMyWork" component={AllMyWork} />
@@ -185,6 +215,37 @@ function App() {
           <Stack.Screen
             name="InductionsDisplay"
             component={InductionsDisplay}
+          />
+          <Stack.Screen name="SearchUser" component={SearchUser} />
+          <Stack.Screen
+            name="SiteScreen"
+            component={SiteScreen}
+            options={{ title: "Site" }}
+          />
+          <Stack.Screen
+            name="HumanResources"
+            component={HumanResources}
+            options={{ title: "Human Resources" }}
+          />
+          <Stack.Screen
+            name="HealthSafety"
+            component={HealthSafety}
+            options={{ title: "Health & Safety" }}
+          />
+          <Stack.Screen
+            name="AllDocs"
+            component={AllDocs}
+            options={{ title: "Documents" }}
+          />
+          <Stack.Screen
+            name="PromoScreen"
+            component={PromoScreen}
+            options={{ title: "" }}
+          />
+          <Stack.Screen
+            name="ContactPage"
+            component={ContactPage}
+            options={{ title: "" }}
           />
         </Stack.Navigator>
       </NavigationContainer>

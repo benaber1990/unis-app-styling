@@ -16,6 +16,7 @@ import { useUser } from "../components/IDContext";
 import "firebase/compat/database";
 import "firebase/auth";
 import AppContext from "../components/AppContext";
+import FooterTextComp from "../components/FooterTextComp";
 
 //FIREBASE CONFIG
 const firebaseConfig = {
@@ -66,35 +67,13 @@ function LogInScreen({ navigation }) {
   return (
     <View style={styles.screenStyle}>
       {/* Logo */}
-      <View style={{ marginBottom: 40 }}>
+      <View style={{ marginBottom: 0, marginTop: -40 }}>
         <Image
-          source={require("../assets/unis-logo.png")}
-          style={{ height: 160, resizeMode: "contain" }}
+          source={require("../assets/fast-simple.png")}
+          style={{ height: 240, resizeMode: "contain" }}
         />
       </View>
-      <Text
-        style={{
-          color: "white",
-          fontSize: 22,
-          fontWeight: "600",
-          // marginBottom: 20,
-          color: "lightgrey",
-        }}
-      >
-        Fast. Secure. Simple
-      </Text>
-      <Text
-        style={{
-          color: "white",
-          fontSize: 24,
-          fontWeight: "600",
-          marginBottom: 20,
-          color: "white",
-          // textDecorationLine: "underline",
-        }}
-      >
-        The Unis Way
-      </Text>
+
       <View>
         <Text
           style={{
@@ -105,7 +84,7 @@ function LogInScreen({ navigation }) {
             fontSize: 16,
           }}
         >
-          Log in to your Unis Account
+          Log in to your UNIS Account
         </Text>
       </View>
 
@@ -115,7 +94,7 @@ function LogInScreen({ navigation }) {
           style={[styles.input, { marginBottom: 20 }]}
           value={initEmail}
           onChangeText={(text) => setInitEmail(text)}
-          placeholder="Your Email Address"
+          placeholder="Username"
           placeholderTextColor={"lightgrey"}
         />
       </View>
@@ -126,7 +105,7 @@ function LogInScreen({ navigation }) {
           value={password}
           onChangeText={(text) => setPassword(text)}
           secureTextEntry
-          placeholder="Your Password"
+          placeholder="Password"
           placeholderTextColor={"lightgrey"}
         />
       </View>
@@ -159,6 +138,11 @@ function LogInScreen({ navigation }) {
           </Pressable>
         </View>
       }
+      <Pressable onPress={() => navigation.navigate("PasswordReset")}>
+        <Text style={{ color: "lightgrey", marginTop: 10 }}>
+          Lost password? Click here to reset
+        </Text>
+      </Pressable>
 
       {/* Create Account Link */}
       <Pressable
@@ -171,15 +155,31 @@ function LogInScreen({ navigation }) {
             color: "lightgrey",
             textAlign: "center",
             fontWeight: "500",
-            fontSize: 16,
+            fontSize: 18,
           }}
         >
-          New to UNIS?
+          New to{" "}
+          <Text style={{ color: COLORS.mainGreen, fontWeight: "900" }}>
+            UNIS
+          </Text>
+          ?
         </Text>
-        <Text style={{ color: "lightgrey", textAlign: "center" }}>
+        <Text
+          style={{ color: "lightgrey", textAlign: "center", fontWeight: "600" }}
+        >
           Click here to create your account
         </Text>
       </Pressable>
+
+      <View style={{ marginTop: 80 }}>
+        <Text style={{ color: "white", fontSize: 14, fontWeight: "600" }}>
+          Powered by{" "}
+          <Text style={{ color: COLORS.mainGreen, fontWeight: "800" }}>
+            UNIS
+          </Text>
+          . All rights reserved. 2023
+        </Text>
+      </View>
     </View>
   );
 }

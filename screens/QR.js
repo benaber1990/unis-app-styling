@@ -5,6 +5,7 @@ import EX_USER_DATA from "../misc/EX_USER_DATA";
 import QRCode from "react-native-qrcode-svg";
 import firebase from "firebase/compat";
 import { useUser } from "../components/IDContext";
+import { Ionicons } from "@expo/vector-icons";
 
 // import firebase from "firebase/compat/app";
 import "firebase/compat/database";
@@ -71,63 +72,100 @@ function QRScreen({ navigation }) {
           marginBottom: 40,
         }}
       ></Text>
+
+      <View style={{ marginTop: 0 }} />
+
       <Text
         style={{
-          marginBottom: 20,
-          fontSize: 16,
-          fontWeight: "500",
           color: "white",
+          fontWeight: "600",
+          marginBottom: 10,
+          fontSize: 24,
         }}
       >
-        You can display this QR to employers to share your profile
-      </Text>
-
-      <View style={{ marginTop: 40 }} />
-
-      <Text style={{ color: "white", fontWeight: "500", marginBottom: 10 }}>
-        Your Unique Unis QR
+        Your Unique <Text style={{ color: COLORS.mainGreen }}>UNIS</Text> QR
+        Code
       </Text>
 
       <View style={styles.cardStyle}>
-        <QRCode value={usernameID} size={250} />
+        <QRCode
+          value={usernameID}
+          size={250}
+          backgroundColor={COLORS.mainGreen}
+        />
       </View>
-
-      <Text style={{ color: "white", marginTop: 30 }}>
-        Some extra text can go here
-      </Text>
 
       {/* Scan QR */}
       {!data.isManager && (
-        <View>
+        <View style={{ flexDirection: "row" }}>
           <Pressable
             onPress={() => navigation.navigate("ScanQR")}
             style={{
               padding: 20,
               marginTop: 20,
-              backgroundColor: COLORS.mainGreen,
+              backgroundColor: COLORS.grey,
               borderRadius: 8,
+              marginRight: 6,
+              elevation: 3,
             }}
           >
             <Text style={{ fontSize: 14, fontWeight: "600", color: "white" }}>
               Scan QR code
             </Text>
           </Pressable>
-
           <Pressable
-            onPress={() => navigation.navigate("ScanQR")}
+            onPress={() => navigation.navigate("SearchUser")}
             style={{
               padding: 20,
               marginTop: 20,
-              backgroundColor: COLORS.mainGreen,
+              backgroundColor: COLORS.grey,
               borderRadius: 8,
+              marginLeft: 6,
+              elevation: 3,
             }}
           >
             <Text style={{ fontSize: 14, fontWeight: "600", color: "white" }}>
-              Share My Profile
+              Search for User
             </Text>
           </Pressable>
         </View>
       )}
+      <Pressable
+        onPress={() => navigation.navigate("ScanQR")}
+        style={{
+          padding: 20,
+          marginTop: 20,
+          backgroundColor: COLORS.grey,
+          borderRadius: 8,
+          alignItems: "center",
+        }}
+      >
+        <Ionicons
+          name="md-share-outline"
+          size={32}
+          color={COLORS.mainGreen}
+          style={{ marginBottom: 10 }}
+        />
+        <Text style={{ fontSize: 14, fontWeight: "600", color: "white" }}>
+          Share My Profile
+        </Text>
+      </Pressable>
+
+      <Text
+        style={{
+          marginBottom: 20,
+          fontSize: 16,
+          fontWeight: "500",
+          color: "white",
+          marginTop: 80,
+          textAlign: "center",
+          marginHorizontal: 40,
+        }}
+      >
+        You can display your{" "}
+        <Text style={{ color: COLORS.mainGreen, fontWeight: "700" }}>QR</Text>{" "}
+        to employers to share your profile
+      </Text>
     </View>
   );
 }
@@ -140,12 +178,13 @@ const styles = StyleSheet.create({
     paddingTop: 60,
   },
   cardStyle: {
-    backgroundColor: COLORS.mainGreen,
+    backgroundColor: COLORS.grey,
     alignSelf: "center",
-    paddingBottom: 30,
-    paddingHorizontal: 30,
+    paddingVertical: 20,
+    paddingHorizontal: 20,
     borderRadius: 8,
-    paddingTop: 30,
+    marginBottom: 20,
+    // paddingTop: 30,
   },
 });
 

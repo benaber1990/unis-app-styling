@@ -45,7 +45,7 @@ function AllDocuments({ navigation }) {
             <Pressable
               onPress={() => navigation.navigate("AddNewDoc")}
               style={{
-                backgroundColor: COLORS.yellow,
+                backgroundColor: COLORS.mainGreen,
                 paddingVertical: 20,
                 paddingHorizontal: 30,
                 borderRadius: 4,

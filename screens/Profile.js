@@ -262,7 +262,7 @@ function Profile({ navigation }) {
           </View>
           <View style={{ flexDirection: "row" }}>
             <ProfileTile
-              title="Work"
+              title="Gallery"
               onPress={() => navigation.navigate("AllMyWork")}
             />
             <ProfileTile
@@ -270,29 +270,61 @@ function Profile({ navigation }) {
               onPress={() => navigation.navigate("Hub")}
             />
           </View>
-          <View style={{ flexDirection: "row" }}>
-            <ProfileTile
-              title="Inductions"
-              onPress={() => navigation.navigate("InductionsScreen")}
-            />
-            <ProfileTile
-              title="Permits"
-              onPress={() => navigation.navigate("PermitsScreen")}
-            />
-          </View>
         </View>
 
         <View
           style={{
-            backgroundColor: COLORS.mainGreen,
-            alignSelf: "center",
-            paddingVertical: 10,
-            paddingHorizontal: 15,
-            borderRadius: 6,
+            backgroundColor: COLORS.lightGreen,
+            paddingVertical: 20,
+            paddingHorizontal: 20,
             marginTop: 20,
+            borderRadius: 12,
+            marginHorizontal: 20,
+            borderWidth: 2,
+            borderColor: COLORS.mainGreen,
+            // marginBottom: 20,
           }}
         >
-          <Text style={{ fontWeight: "600" }}>Update Profile</Text>
+          <Text
+            style={{
+              fontWeight: "900",
+              fontSize: 17,
+              // color: COLORS.lightGreen,
+            }}
+          >
+            Your
+            <Text style={{ color: COLORS.mainGreen, fontWeight: "900" }}>
+              {" "}
+              UNIS
+            </Text>{" "}
+            Profile
+          </Text>
+          <Text style={{}}>
+            Update your personal profile so that managers and employers can see
+            your latest information
+          </Text>
+
+          <Pressable
+            onPress={() => navigation.navigate("UpdateProfile")}
+            style={{
+              backgroundColor: COLORS.mainGreen,
+              paddingVertical: 5,
+              paddingHorizontal: 8,
+              borderRadius: 4,
+              elevation: 1,
+              alignSelf: "flex-start",
+              marginTop: 5,
+            }}
+          >
+            <Text
+              style={{
+                fontWeight: "600",
+                // color: "white",
+              }}
+            >
+              Update Your Profile
+            </Text>
+          </Pressable>
         </View>
       </ScrollView>
     </View>

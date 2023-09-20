@@ -15,27 +15,54 @@ import { Ionicons } from "@expo/vector-icons";
 
 function NotificationsScreen({ navigation }) {
   const Item = ({ alertTitle, alertCat }) => (
-    <Pressable style={styles.itemStyle}>
-      <Pressable style={{ marginRight: 10 }}>
-        <Entypo name="circle-with-cross" size={18} color="black" />
+    <View style={{ flexDirection: "row" }}>
+      <Pressable style={styles.itemStyle}>
+        <View
+          style={{
+            width: 20,
+            backgroundColor: COLORS.mainGreen,
+            borderTopLeftRadius: 6,
+            borderBottomLeftRadius: 6,
+          }}
+        />
+        <View
+          style={{
+            flexDirection: "row",
+            marginLeft: 10,
+            paddingTop: 15,
+            paddingRight: 30,
+          }}
+        >
+          <Pressable
+            onPress={() =>
+              navigation.navigate("NotDisplay", { alertTitle, alertCat })
+            }
+          >
+            <Text style={{ fontSize: 16, fontWeight: "500" }}>
+              {alertTitle}
+            </Text>
+            <Text style={{}}>Notification information can go here</Text>
+          </Pressable>
+          {/* <Pressable
+          onPress={() =>
+            navigation.navigate("NotDisplay", { alertTitle, alertCat })
+          }
+          style={{ marginLeft: 15 }}
+        >
+          <Ionicons name="chevron-forward-circle" size={24} color="black" />
+        </Pressable> */}
+        </View>
       </Pressable>
-      <Pressable
-        onPress={() =>
-          navigation.navigate("NotDisplay", { alertTitle, alertCat })
-        }
+
+      <View
+        style={{
+          marginLeft: 15,
+          marginTop: 25,
+        }}
       >
-        <Text style={{ fontSize: 16, fontWeight: "500" }}>{alertTitle}</Text>
-        <Text style={{}}>Notification information can go here</Text>
-      </Pressable>
-      <Pressable
-        onPress={() =>
-          navigation.navigate("NotDisplay", { alertTitle, alertCat })
-        }
-        style={{ marginLeft: 15 }}
-      >
-        <Ionicons name="chevron-forward-circle" size={24} color="black" />
-      </Pressable>
-    </Pressable>
+        <Text style={{ color: "white", fontWeight: "500" }}>3 Hours</Text>
+      </View>
+    </View>
   );
 
   const renderItem = ({ item }) => (
@@ -49,21 +76,7 @@ function NotificationsScreen({ navigation }) {
         data={NOTIFICATIONS_DATA}
         renderItem={renderItem}
         showsVerticalScrollIndicator={false}
-        ListHeaderComponent={() => (
-          <View style={{ marginTop: 60 }}>
-            <Text
-              style={{
-                color: "white",
-                textAlign: "center",
-                marginBottom: 20,
-                fontSize: 18,
-                fontWeight: "500",
-              }}
-            >
-              My Notifications
-            </Text>
-          </View>
-        )}
+        ListHeaderComponent={() => <View style={{ marginTop: 20 }}></View>}
       />
     </SafeAreaView>
   );
@@ -77,12 +90,11 @@ const styles = StyleSheet.create({
   },
   itemStyle: {
     backgroundColor: COLORS.yellow,
-    marginBottom: 20,
-    paddingVertical: 15,
-    paddingHorizontal: 20,
+    marginBottom: 8,
     borderRadius: 4,
     flexDirection: "row",
-    alignItems: "center",
+    height: 70,
+    // alignItems: "center",
   },
 });
 

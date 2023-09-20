@@ -66,26 +66,30 @@ function Settings({ navigation }) {
       {/* Log Out */}
       <Pressable
         onPress={handleLogOut}
-        style={{ backgroundColor: "#fafafa", alignSelf: "center", padding: 20 }}
+        style={{
+          backgroundColor: "#fafafa",
+          alignSelf: "center",
+          paddingHorizontal: 20,
+          paddingVertical: 12,
+          borderRadius: 6,
+        }}
       >
         <Text>Log Out</Text>
       </Pressable>
 
-      <Pressable>
-        <Text style={{ marginTop: 30, color: "white", textAlign: "center" }}>
-          Logged Out
-        </Text>
+      {/* Password Reset */}
+      <Pressable
+        onPress={() => navigation.navigate("PasswordReset")}
+        style={{
+          backgroundColor: "#fafafa",
+          alignSelf: "center",
+          paddingHorizontal: 20,
+          paddingVertical: 12,
+          borderRadius: 6,
+        }}
+      >
+        <Text>Reset My Password</Text>
       </Pressable>
-
-      {user ? (
-        <View>
-          <Text style={{ color: "white" }}>Yes</Text>
-        </View>
-      ) : (
-        <View>
-          <Text style={{ color: "white" }}>No</Text>
-        </View>
-      )}
     </View>
   );
 }

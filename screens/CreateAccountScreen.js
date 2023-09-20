@@ -62,10 +62,10 @@ function CreateAccountScreen({ navigation }) {
   return (
     <View style={styles.screenStyle}>
       {/* Logo */}
-      <View style={{ marginBottom: 40 }}>
+      <View style={{ marginBottom: 0, marginTop: -40 }}>
         <Image
-          source={require("../assets/unis-logo.png")}
-          style={{ height: 100, resizeMode: "contain" }}
+          source={require("../assets/unis-new.png")}
+          style={{ height: 220, resizeMode: "contain" }}
         />
       </View>
 
@@ -124,7 +124,11 @@ function CreateAccountScreen({ navigation }) {
         />
         <View style={{ flexDirection: "column" }}>
           <Text style={{ color: "lightgrey" }}>
-            By signing up to use Unis, I accept the Unis T&C's as{"\n"}
+            By signing up to use Unis, I accept the{" "}
+            <Text style={{ color: COLORS.mainGreen, fontWeight: 700 }}>
+              UNIS
+            </Text>{" "}
+            T&C's as{"\n"}
             <Pressable onPress={() => navigation.navigate("SignUpTCs")}>
               <Text
                 style={{ color: "lightgrey", textDecorationLine: "underline" }}
@@ -139,7 +143,6 @@ function CreateAccountScreen({ navigation }) {
       {/* Submit Button */}
       {!isChecked && (
         <Pressable
-          onPress={handleRegistration}
           style={[
             styles.button,
             {
@@ -152,6 +155,7 @@ function CreateAccountScreen({ navigation }) {
       )}
       {isChecked && (
         <Pressable
+          onPress={handleRegistration}
           style={[
             styles.button,
             {

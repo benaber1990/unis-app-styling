@@ -17,6 +17,7 @@ import {
   ImageBackground,
   Dimensions,
   ScrollView,
+  Share,
 } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import {
@@ -58,6 +59,7 @@ function HomeScreen({ navigation }) {
   const [user, setUser] = useState(null);
   const navigationHndl = useNavigation();
   const [userId, setUserId] = useState();
+  const [hasNots, setHasNots] = useState(true);
 
   useEffect(() => {
     const unsubscribe = firebase.auth().onAuthStateChanged((authUser) => {
@@ -119,25 +121,25 @@ function HomeScreen({ navigation }) {
     return (
       <View style={styles.homeCardContainer}>
         <HomeListItem
-          iconName="md-duplicate-outline"
-          title="Certs"
-          onPress={() => navigation.navigate("AllDocuments")}
+          iconName="people-outline"
+          title="HR"
+          onPress={() => navigation.navigate("HumanResources")}
         />
         <HomeListItem
-          iconName="card-outline"
-          title="Cards"
-          onPress={() => navigation.navigate("AllCards")}
+          iconName="medkit-outline"
+          title="H&S"
+          onPress={() => navigation.navigate("HealthSafety")}
           // onPress={onPress}
         />
         <HomeListItem
-          iconName="globe"
-          title="Unis Hub"
-          onPress={() => navigation.navigate("Hub")}
+          iconName="md-document-outline"
+          title="Docs"
+          onPress={() => navigation.navigate("AllDocs")}
         />
         <HomeListItem
-          iconName="md-share-social-outline"
-          title="Share"
-          onPress={() => navigation.navigate("QR")}
+          iconName="hammer-outline"
+          title="Site"
+          onPress={() => navigation.navigate("SiteScreen")}
         />
       </View>
     );
@@ -145,14 +147,35 @@ function HomeScreen({ navigation }) {
 
   // Search Box
 
+  // Share
+  const onShare = async () => {
+    try {
+      const result = await Share.share({
+        message:
+          "Unis: Fast. Simple. Secure - get it now at https://google.com",
+      });
+      if (result.action === Share.sharedAction) {
+        if (result.activityType) {
+          // shared with activity type of result.activityType
+        } else {
+          // shared
+        }
+      } else if (result.action === Share.dismissedAction) {
+        // dismissed
+      }
+    } catch (error) {
+      Alert.alert(error.message);
+    }
+  };
+
   // FlatList
   const Item = ({ title, imageLink }) => (
     <Pressable
-      onPress={() => navigation.navigate("ContentDisplay")}
+      onPress={() => navigation.navigate("PromoScreen")}
       style={{ marginRight: 30 }}
     >
       <Pressable
-        onPress={() => navigation.navigate("ContentDisplay")}
+        onPress={() => navigation.navigate("PromoScreen")}
         style={{
           // marginBottom: 30,
           borderRadius: 12,
@@ -162,7 +185,7 @@ function HomeScreen({ navigation }) {
       >
         <ImageBackground
           style={{
-            width: 350,
+            width: 220,
             height: 200,
             borderRadius: 12,
           }}
@@ -176,12 +199,12 @@ function HomeScreen({ navigation }) {
               paddingLeft: 20,
               paddingRight: 30,
               // width: 150,
-              backgroundColor: "rgba(0, 0, 0, 0.5)",
+              // backgroundColor: "rgba(0, 0, 0, 0.5)",
               flex: 1,
               borderRadius: 12,
             }}
           >
-            <Text style={{ color: COLORS.mainGreen, fontWeight: "600" }}>
+            {/* <Text style={{ color: COLORS.mainGreen, fontWeight: "600" }}>
               Health & Safety
             </Text>
             <Text style={{ color: "white", fontSize: 22, fontWeight: "500" }}>
@@ -196,24 +219,24 @@ function HomeScreen({ navigation }) {
               }}
             >
               Post excerpt can be displayed here
-            </Text>
+            </Text> */}
           </View>
         </ImageBackground>
       </Pressable>
       <View
         style={{
-          backgroundColor: COLORS.mainGreen,
-          paddingHorizontal: 8,
-          paddingVertical: 6,
+          backgroundColor: COLORS.grey,
+          paddingHorizontal: 12,
+          paddingVertical: 8,
           borderRadius: 4,
           alignSelf: "center",
           marginBottom: 30,
           marginTop: -20,
           borderWidth: 2,
-          borderColor: COLORS.black,
+          borderColor: COLORS.lightGreen,
         }}
       >
-        <Text style={{ fontWeight: "500", fontSize: 16, color: COLORS.grey }}>
+        <Text style={{ fontWeight: "500", fontSize: 16, color: "white" }}>
           Read More
         </Text>
       </View>
@@ -234,41 +257,59 @@ function HomeScreen({ navigation }) {
   const windowHeight = Dimensions.get("window").height;
 
   return (
-    <ScrollView>
-      <SafeAreaView style={styles.screenStyle}>
-        <StatusBar style="dark" />
+    <View style={styles.screenStyle}>
+      <StatusBar style="dark" />
 
-        <View style={{ marginTop: 0, justifyContent: "flex-start" }}>
+      <View style={{ marginTop: 0, justifyContent: "flex-start" }}>
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "space-between",
+            alignItems: "center",
+            paddingTop: 30,
+            // backgroundColor: COLORS.grey,
+            // paddingBottom: 10,
+          }}
+        >
+          <Pressable style={{}}>
+            <Image
+              source={require("../assets/unis-new.png")}
+              style={{
+                height: 100,
+                width: 100,
+                resizeMode: "contain",
+                // marginLeft: -20,
+              }}
+            />
+          </Pressable>
           <View
             style={{
-              flexDirection: "row",
-              justifyContent: "center",
               alignItems: "center",
-              paddingTop: 40,
-              paddingBottom: 20,
+              flexDirection: "row",
+              marginRight: 10,
             }}
           >
-            <Pressable style={{ marginRight: 20 }}>
-              <Image
-                source={require("../assets/unis-logo.png")}
-                style={{ height: 60, width: 60, resizeMode: "contain" }}
-              />
-            </Pressable>
-            <View style={{ marginRight: 20, marginLeft: 10 }}>
-              <Text style={{ color: "white", fontSize: 18, fontWeight: "600" }}>
-                Welcome {data.firstName}
-              </Text>
-            </View>
             <Pressable
               onPress={() => navigation.navigate("Notifications")}
               style={{}}
             >
               <Ionicons
                 name="notifications"
-                size={24}
-                color={COLORS.mainGreen}
+                size={28}
+                color={hasNots ? COLORS.mainGreen : "white"}
+              />
+              <View
+                style={{
+                  backgroundColor: "red",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  height: 8,
+                  width: 8,
+                  borderRadius: 4,
+                }}
               />
             </Pressable>
+
             <Pressable
               onPress={() => navigation.navigate("Profile")}
               style={{ marginLeft: 10 }}
@@ -286,50 +327,78 @@ function HomeScreen({ navigation }) {
               />
             </Pressable>
           </View>
-
-          {/* <View style={{ height: 20 }} /> */}
-          <View style={{ flexDirection: "row", alignSelf: "center" }}>
-            <TextInput
-              placeholder="Enter Your Search Here"
-              style={styles.textInputStyle}
-              // value={text}
-              onChangeText={(text) => setText(text)}
-              placeholderTextColor={"lightgrey"}
-            />
-            <View
-              style={{
-                justifyContent: "center",
-                backgroundColor: COLORS.grey,
-                paddingRight: 15,
-                marginLeft: -3,
-                borderTopRightRadius: 32,
-                borderBottomRightRadius: 32,
-              }}
-            >
-              <Foundation
-                name="magnifying-glass"
-                size={24}
-                color={COLORS.mainGreen}
-                style={{}}
-              />
-            </View>
-          </View>
-          <View>
-            <Text
-              style={{
-                color: "white",
-                textAlign: "center",
-                marginTop: 6,
-                fontSize: 12,
-              }}
-            >
-              Search UNIS for resources, tips & information
-            </Text>
-          </View>
-          <View style={{ height: 20 }} />
-
-          {/* Home card */}
         </View>
+
+        {/* <View style={{ height: 20 }} /> */}
+        <View
+          style={{
+            marginBottom: 10,
+          }}
+        >
+          <Text
+            style={{
+              color: "white",
+              fontSize: 24,
+              fontWeight: "600",
+              marginBottom: 6,
+              marginLeft: 20,
+            }}
+          >
+            Welcome, {data.firstName}!
+          </Text>
+
+          <Text
+            style={{
+              color: "white",
+              // textAlign: "center",
+              // marginTop: 6,
+              fontSize: 16,
+              marginBottom: -5,
+              marginTop: 10,
+              marginLeft: 20,
+            }}
+          >
+            Search the{" "}
+            <Text style={{ fontWeight: "700", color: COLORS.mainGreen }}>
+              Unis
+              <Text style={{ fontWeight: "400", color: COLORS.mainGreen }}>
+                verse
+              </Text>
+            </Text>
+          </Text>
+        </View>
+        <View style={{ flexDirection: "row", alignSelf: "center" }}>
+          <TextInput
+            placeholder="Enter Your Search Here"
+            style={styles.textInputStyle}
+            // value={text}
+            onChangeText={(text) => setText(text)}
+            placeholderTextColor={"lightgrey"}
+          />
+          <View
+            style={{
+              justifyContent: "center",
+              backgroundColor: COLORS.grey,
+              paddingRight: 15,
+              marginLeft: -3,
+              borderTopRightRadius: 32,
+              borderBottomRightRadius: 32,
+            }}
+          >
+            <Ionicons
+              name="ios-globe-outline"
+              size={24}
+              color={COLORS.mainGreen}
+              style={{}}
+            />
+          </View>
+        </View>
+
+        <View style={{ height: 20 }} />
+        {/* Home card */}
+      </View>
+
+      <ScrollView style={{ flex: 1 }}>
         <HomeCard />
         <View style={{ height: 20 }} />
         <FlatList
@@ -355,28 +424,12 @@ function HomeScreen({ navigation }) {
             // paddingBottom: 200,
           }}
         >
-          <View
-            style={{
-              backgroundColor: COLORS.grey,
-              borderRadius: 12,
-              paddingVertical: 20,
-              paddingHorizontal: 30,
-              marginRight: 10,
-              alignItems: "center",
-              width: 150,
-              justifyContent: "center",
-            }}
-          >
-            <FontAwesome
-              name="share"
-              size={24}
-              color={COLORS.mainGreen}
-              style={{}}
-            />
-            <Text style={{ color: "white", fontWeight: "600" }}>
-              Share Unis
-            </Text>
-          </View>
+          <HomeListItem
+            iconName="albums-outline"
+            title="Certs"
+            onPress={() => navigation.navigate("AllDocuments")}
+          />
+
           <Pressable
             onPress={() => navigation.navigate("QR")}
             style={{
@@ -385,14 +438,16 @@ function HomeScreen({ navigation }) {
               paddingVertical: 20,
               paddingHorizontal: 30,
               // marginHorizontal: 10,
-              marginLeft: 10,
+              marginHorizontal: 10,
               alignItems: "center",
               width: 150,
+              borderWidth: 2,
+              borderColor: COLORS.mainGreen,
             }}
           >
             <MaterialIcons
               name="qr-code-2"
-              size={26}
+              size={34}
               color={COLORS.mainGreen}
               style={{}}
             />
@@ -400,6 +455,11 @@ function HomeScreen({ navigation }) {
               Share Profile
             </Text>
           </Pressable>
+          <HomeListItem
+            iconName="card-outline"
+            title="Cards"
+            onPress={() => navigation.navigate("AllCards")}
+          />
 
           {/* Footer */}
         </View>
@@ -453,15 +513,101 @@ function HomeScreen({ navigation }) {
             </Pressable>
           </View>
         </View>
-      </SafeAreaView>
-    </ScrollView>
+        <FlatList
+          data={
+            updatedData.length > 0 ? updatedData : LATEST_NEWS_DATA.slice(0, 1)
+          }
+          // {searchResults.length > 0 ? searchResults : data.slice(0, 1)}
+          renderItem={renderItem}
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          ListHeaderComponent={() => (
+            // Header
+            <View style={{ marginLeft: 20 }} />
+          )}
+        />
+        <View
+          style={{
+            backgroundColor: COLORS.black,
+            paddingBottom: 60,
+            marginHorizontal: 20,
+            // marginBottom: 20,
+          }}
+        >
+          <View
+            style={{
+              backgroundColor: COLORS.grey,
+              paddingVertical: 20,
+              paddingHorizontal: 20,
+              marginTop: 20,
+              borderRadius: 12,
+              // marginBottom: 20,
+            }}
+          >
+            <Text
+              style={{
+                fontWeight: "600",
+                fontSize: 16,
+                color: COLORS.lightGreen,
+              }}
+            >
+              Explore
+              <Text style={{ color: COLORS.mainGreen, fontWeight: "900" }}>
+                {" "}
+                UNIS
+              </Text>{" "}
+              Integration Features
+            </Text>
+            <Text style={{ color: "white" }}>
+              Find out how the UNIS app seamlessly integrates with the UNIS
+              portal to power your construction projects
+            </Text>
+
+            <Pressable
+              onPress={() => navigation.navigate("Profile")}
+              style={{
+                backgroundColor: COLORS.mainGreen,
+                paddingVertical: 5,
+                paddingHorizontal: 8,
+                borderRadius: 4,
+                elevation: 1,
+                alignSelf: "flex-start",
+                marginTop: 5,
+              }}
+            >
+              <Text
+                style={{
+                  fontWeight: "600",
+                  // color: "white",
+                }}
+              >
+                Book a Demo
+              </Text>
+            </Pressable>
+          </View>
+        </View>
+        <FlatList
+          data={
+            updatedData.length > 0 ? updatedData : LATEST_NEWS_DATA.slice(0, 1)
+          }
+          // {searchResults.length > 0 ? searchResults : data.slice(0, 1)}
+          renderItem={renderItem}
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          ListHeaderComponent={() => (
+            // Header
+            <View style={{ marginLeft: 20 }} />
+          )}
+        />
+      </ScrollView>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   screenStyle: {
     backgroundColor: COLORS.black,
-    // flex: 1,
+    flex: 1,
     // justifyContent: "flex-start",
     alignItems: "center",
     // paddingBottom: 60,
@@ -476,8 +622,8 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.black,
   },
   textInputStyle: {
-    height: 60,
-    width: 270,
+    height: 50,
+    width: 330,
     // borderRadius: 2,
     borderTopLeftRadius: 32,
     borderBottomLeftRadius: 32,
