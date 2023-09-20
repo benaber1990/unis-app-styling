@@ -48,7 +48,7 @@ function AllMyWork({ navigation }) {
         </Text>
         <View
           style={{
-            backgroundColor: COLORS.yellow,
+            backgroundColor: COLORS.lightGreen,
             marginLeft: 10,
             padding: 5,
             borderRadius: 3,
@@ -83,7 +83,7 @@ function AllMyWork({ navigation }) {
               onPress={() => navigation.navigate("AddNewWork")}
               style={{
                 padding: 20,
-                backgroundColor: "#fafafa",
+                backgroundColor: COLORS.mainGreen,
                 marginBottom: 20,
                 alignSelf: "center",
                 borderRadius: 6,
